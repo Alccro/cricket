@@ -1,13 +1,25 @@
 import './App.css';
-import Teams from './components/Teams'
+import Teams from './components/Teams';
+// import Stats from './components/Stats';
+import styled from 'styled-components';
+
+const Background = styled.div`
+  background-image: radial-gradient(circle, yellow 5%, lightgreen, green);
+`;
 
 function App() {
+  
   return (
-    <div className="App">
-      <header className="App-header">
-      </header>
-      <Teams />
-    </div>
+    <>
+      <Background>
+        <div className="App">
+          <header className="App-header">
+          </header>
+          <Teams />
+        {/* <Stats /> */}
+        </div>
+      </Background>
+    </>
   );
 }
 
