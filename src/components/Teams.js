@@ -1,62 +1,40 @@
-import React, { useState } from 'react';
+import React, { Component } from 'react';
+import Select from './Select';
 
-import styled from 'styled-components';
-import { country, countryArray } from './Stats';
-
-
-const TeamsBox = styled.div`
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    border: 2px solid green;
-`;
-const NamesContainer = styled.div`
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    width: 50%;
-    margin-left: auto;
-    margin-right: auto;
-`;
-const Title = styled.h1`
-    font-size: 1.5rem;
-    text-align: center;
-    color: palevioletred;
-    margin: 1rem;
-`;
-const Dropdown = styled.select`
-    display: inline;
-    margin: 1rem;
-`;
-
-function Teams () {
-     
-    
-    const [any , setCountry] = useState('Select a team')
-
-    const handleTeamChange = (e) => {
-      setCountry(e.target.value)
+class Teams extends Component {
+    constructor(props) {
+        super(props);
+        this.handleTeamChange = this.handleTeamChange.bind(this);
     }
-   console.log(countryArray(country))
-    return (
-        <TeamsBox>
-            <Title>Choose your teams</Title>
-            <NamesContainer>
+        
+    handleTeamChange(e) {
+        this.props.onChange({value: this.props.value});
+    }
+    
+    render() {
+        
+        const teamsBtn = () => {
+            console.log(this.props.value)
+        }
+
+     return (
+        <div className='teamsBox'>
+            <h1>Choose your teams</h1>
+            <div className='namesContainer'>
                <div id='homeTeam'>
-                <Dropdown onChange={handleTeamChange}>
-                        <option value='Select a team'>Select a team</option>
-                        {countryArray(country).map((any) => <option key={any} value={any}>{any}</option>)}
-                </Dropdown>
+                    <h2>Home Team</h2>
+                    <Select value={this.props.value} onTeamChange={this.handleTeamChange} type={'country'} title={'Select home team'}/>
                 </div>
                 <div id='awayTeam'>
-                    <Dropdown>
-                        <option value='England'>England</option>
-                        <option value='India'>India</option>
-                        <option value='West Indies'>West Indies</option>
-                    </Dropdown>
+                    <h2>Away Team</h2>
+                    <Select type={'country'} title={'Select away team'}/>
                 </div>
-            </NamesContainer>
-        </TeamsBox>
-    );
+            </div>
+                <button id='teamsBtn' onClick={teamsBtn}>Confirm</button>
+        </div>
+    );}
 }
 
 export default Teams
+
+ 

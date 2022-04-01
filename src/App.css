@@ -1,3 +1,38 @@
+:root {
+  --green-0: #061a04;
+  --green-1: #238918;
+  --green-2: #47e236;
+  --green-3: #76ff64;
+  --green-4: #b0ffa5;
+  --green-5: #f1ffee;
+  --green-6: #fafff7;
+  --yellow-1: #faef8d;
+  --font-size-0: 16px;
+  --font-size-1: 32px;
+  --font-size-2: 48px;
+  --font-size-3: 64px;
+  --border-radius-0: 0.1rem;
+  --border-radius-1: 0.2rem;
+  --border-radius-2: 0.3rem;
+  --border-width-0: 1px;
+  --border-width-1: 2px;
+  --border-width-2: 3px;
+  --space-0: 16px;
+  --line-height-solid: 1;
+  --line-height-heading: 1.2;
+  --border-style-0: solid;
+  --border-width-0: 1px;
+  --border-width-1: 2px;
+  --border-width-2: 3px;
+  --font-family-heading: Poppins;
+  --font-family-body: Roboto Slab;
+  --box-shadow-0: 0px 1px 1px 0px rgba(0, 0, 0, 0.125), 0px 2px 2px 0px rgba(0, 0, 0, 0.125), 0px 4px 4px 0px rgba(0, 0, 0, 0.125), 0px 8px 8px 0px rgba(0, 0, 0, 0.125), 0px 16px 16px 0px rgba(0, 0, 0, 0.125);
+  --text-shadow-0: 3px 3px 3px hsla(61, 93%, 49%, 1);
+  --letter-spacing-tracked: 0.1em;
+  --letter-spacing-negative: -0.05em;
+  --letter-spacing-large: 0.25em;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -17,5 +52,53 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  
 }
 
+.main {
+  background-image: radial-gradient(circle, var(--yellow-1) 10%, var(--green-1));
+}
+
+.teamsBox {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+}
+
+h1 {
+  font-size: 2rem;
+  text-align: center;
+  color: palevioletred;
+  margin: 0.5rem;
+  font-family: var(--font-family-heading);
+}
+
+h2 {
+  font-size: 1.1rem;
+  text-align: center;
+  color: rgb(252, 132, 172);
+  margin: 0.5rem;
+  font-family: var(--font-family-heading);
+}
+
+.namesContainer  {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+button {
+  width: min-content;
+  padding: 0.1rem 0.3rem 0.1rem 0.3rem;
+  align-self: center;
+  margin: 0.3rem;
+}
+
+select {
+  display: inline;
+  margin: 0.1rem;
+  align-self: center;
+}

@@ -1,26 +1,31 @@
-import './App.css';
+import React, { Component } from 'react';
 import Teams from './components/Teams';
-// import Stats from './components/Stats';
-import styled from 'styled-components';
+import Players from './components/Players';
 
-const Background = styled.div`
-  background-image: radial-gradient(circle, yellow 5%, lightgreen, green);
-`;
+import './App.css';
 
-function App() {
+class App extends Component {
+  constructor(props) {
+      super(props);
+      this.state = {  value: 'Select home team' }; 
+
+      this.handleTeamChange = this.handleTeamChange.bind(this);
+  }
+      
+  handleTeamChange(e) {
+      this.setState(e.target.value);
+  }
   
+  render() {
   return (
     <>
-      <Background>
-        <div className="App">
-          <header className="App-header">
-          </header>
-          <Teams />
-        {/* <Stats /> */}
-        </div>
-      </Background>
+      <div className='main'>
+          <Teams value={'Select home team'} onTeamChange={this.handleTeamChange} />
+          <Players />
+      </div>
     </>
   );
+}
 }
 
 export default App;
