@@ -1,41 +1,60 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 
 import { statsFile } from './statsFile';
 
+function countryArray() {
+    const Country = statsFile.map(function(element) {
+        return element.Country;
+    })
+    return Country.filter((value, index) => Country.indexOf(value) === index);
+}
 
-class Teams extends Component {
-    
-    countryArray() {
-        const Country = statsFile.map(function(element) {
-            return element.Country;
-        })
-        return Country.filter((value, index) => Country.indexOf(value) === index);
-    }
 
-   render() {
-     return (
+
+export default function Teams(props) {
+
+
+    return (
         <div className='box'>
             <h2>Choose your teams</h2>
             <div className='teamsContainer'>
                <div className='selectContainer'>
                     <h3>Home Team</h3>
-                        <select onChange={this.props.handleHomeTeamChange} value={this.props.homeTeam}>
-                            <option value={this.props.homeTeam}>{this.props.homeTeam}</option>
-                            {this.countryArray().map((element) => <option key={element} value={element}>{element}</option>)}
-                        </select>
+                    <select 
+                        onChange={props.handleInputChange}
+                        value={props.homeTeam}
+                        name='home'
+                    >
+                        <option value={props.homeTeam}>
+                            {props.homeTeam}
+                        </option>
+                        {countryArray().map((element) => 
+                        <option key={element} value={element}>
+                            {element}
+                        </option>)}
+                    </select>
                 </div>
                 <div className='selectContainer'>
-                    <h3>Away Team</h3>
-                        <select onChange={this.props.handleAwayTeamChange} value={this.props.awayTeam}>
-                            <option value={this.props.awayTeam}>{this.props.awayTeam}</option>
-                            {this.countryArray().map((element) => <option key={element} value={element}>{element}</option>)}
-                        </select>
+                <h3>Away Team</h3>
+                    <select 
+                        onChange={props.handleInputChange}
+                        value={props.awayTeam}
+                        name='away'
+                    >
+                        <option value={props.awayTeam}>
+                            {props.awayTeam}
+                        </option>
+                        {countryArray().map((element) => 
+                        <option key={element} value={element}>
+                            {element}
+                        </option>)}
+                    </select>
                 </div>
             </div>
         </div>
     )}
 
-}
 
-export default Teams
+
+
 

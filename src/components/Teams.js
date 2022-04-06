@@ -22,11 +22,11 @@ export default function Teams(props) {
                     <h3>Home Team</h3>
                     <select 
                         onChange={props.handleInputChange}
-                        value={props.valueH}
+                        value={props.homeTeam}
                         name='home'
                     >
-                        <option value={props.valueH}>
-                            {props.valueH}
+                        <option value={props.homeTeam}>
+                            {props.homeTeam}
                         </option>
                         {countryArray().map((element) => 
                         <option key={element} value={element}>
@@ -35,14 +35,14 @@ export default function Teams(props) {
                     </select>
                 </div>
                 <div className='selectContainer'>
-                <h3>Home Team</h3>
+                <h3>Away Team</h3>
                     <select 
                         onChange={props.handleInputChange}
-                        value={props.valueA}
+                        value={props.awayTeam}
                         name='away'
                     >
-                        <option value={props.valueA}>
-                            {props.valueA}
+                        <option value={props.awayTeam}>
+                            {props.awayTeam}
                         </option>
                         {countryArray().map((element) => 
                         <option key={element} value={element}>

@@ -12,9 +12,11 @@ import './App.css';
 const intialValues = {
   home: 'Choose team',
   away: 'Choose team',
-  valueH: 'ENG',
-  valueA: '',
-  homePlayers: 'Choose players'
+  homeTeam: '',
+  awayTeam: '',
+  homePlayer1: 'Choose Opener',
+  homePlayer2: 'Choose Opener',
+  awayPlayer1: 'Choose Opener'
 };
 
 function App() {
@@ -27,25 +29,61 @@ function App() {
           [name]: value,
       });
   };
-  console.log('valueH:', values.home)
-  console.log('valueA:', values.away)
-  console.log('homePlayers:', values.homePlayers)
+  
+  function homePlayerArray() {
+    const filteredArray = statsFile.filter(element => {
+      return element.Country === values.home
+    })
+    const sortedArray = filteredArray.sort((a,b) => (a.Player > b.Player) ? 1 : ((b.Player > a.Player) ? -1 : 0));
+    return sortedArray;
+  }
+  function homePlayer1Stats() {
+    const filter = homePlayerArray().filter(element => {
+      return element.Player === values.homePlayer1
+    })
+    return filter
+  }
+  function homePlayer2Stats() {
+    const filter = homePlayerArray().filter(element => {
+      return element.Player === values.homePlayer2
+    })
+    return filter
+  }
+  function awayPlayerArray() {
+    const filteredArray = statsFile.filter(element => {
+      return element.Country === values.away
+    })
+    const sortedArray = filteredArray.sort((a,b) => (a.Player > b.Player) ? 1 : ((b.Player > a.Player) ? -1 : 0));
+    return sortedArray;
+  }
+  
+  console.log('home:', values.home)
+  console.log('away:', values.away)
+  console.log('homePlayer1:', values.homePlayer1)
+  console.log('homePlayer2:', values.homePlayer2)
+  console.log('awayPlayer1:', values.awayPlayer1)
+  console.log(homePlayerArray())
     return (
       <>
+        <h1>Cricket Simulator</h1>
         <ErrorBoundary>
           <Teams
             handleInputChange={handleInputChange}
-            valueH={values.home}
-            valueA={values.away}
+            homeTeam={values.home}
+            awayTeam={values.away}
           />
 
         </ErrorBoundary>
         <ErrorBoundary>
           <Players 
             handleInputChange={handleInputChange}
-            valueH={values.home}
-            valueA={values.away}
-            homePlayers={values.homePlayers}
+            homePlayer1={values.homePlayer1}
+            homePlayer2={values.homePlayer2}
+            awayPlayer1={values.awayPlayer1}
+            homePlayerArray={homePlayerArray()}
+            awayPlayerArray={awayPlayerArray()}
+            homePlayer1Stats={homePlayer1Stats()}
+            homePlayer2Stats={homePlayer2Stats()}
           />
         </ErrorBoundary>
         <ErrorBoundary>
