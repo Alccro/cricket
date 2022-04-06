@@ -1,31 +1,63 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import Teams from './components/Teams';
 import Players from './components/Players';
+import Rules from './components/Rules';
+import Board from './components/Board';
+import ErrorBoundary from './components/ErrorBoundary';
+import { statsFile } from './components/statsFile';
+
 
 import './App.css';
 
-class App extends Component {
-  constructor(props) {
-      super(props);
-      this.state = {  value: 'Select home team' }; 
+const intialValues = {
+  home: 'Choose team',
+  away: 'Choose team',
+  valueH: 'ENG',
+  valueA: '',
+  homePlayers: 'Choose players'
+};
 
-      this.handleTeamChange = this.handleTeamChange.bind(this);
-  }
-      
-  handleTeamChange(e) {
-      this.setState(e.target.value);
+function App() {
+  const [values, setValues] = useState(intialValues);
+    
+  const handleInputChange = (e) => {
+      const { name, value } = e.target;
+        setValues({
+          ...values,
+          [name]: value,
+      });
+  };
+  console.log('valueH:', values.home)
+  console.log('valueA:', values.away)
+  console.log('homePlayers:', values.homePlayers)
+    return (
+      <>
+        <ErrorBoundary>
+          <Teams
+            handleInputChange={handleInputChange}
+            valueH={values.home}
+            valueA={values.away}
+          />
+
+        </ErrorBoundary>
+        <ErrorBoundary>
+          <Players 
+            handleInputChange={handleInputChange}
+            valueH={values.home}
+            valueA={values.away}
+            homePlayers={values.homePlayers}
+          />
+        </ErrorBoundary>
+        <ErrorBoundary>
+          <Rules />
+        </ErrorBoundary>
+        <ErrorBoundary>
+          <Board />
+        </ErrorBoundary>
+      </>
+    )
   }
   
-  render() {
-  return (
-    <>
-      <div className='main'>
-          <Teams value={'Select home team'} onTeamChange={this.handleTeamChange} />
-          <Players />
-      </div>
-    </>
-  );
-}
-}
+
 
 export default App;

@@ -1,29 +1,43 @@
 import React from 'react';
-import { England } from './Stats';
-import Select from './Select';
+import { statsFile } from './statsFile';
 
-function Players () {
-     
-    const PlayersBtn = (e) => {
-        console.log(England)
-    }
+
+
+function playerArray(props) {
+    // const team = props.valueH
+    const filteredArray = statsFile.filter(element => {
+      return element.Country === props.valueH
+    })
+    const sortedArray = filteredArray.sort((a,b) => (a.Player > b.Player) ? 1 : ((b.Player > a.Player) ? -1 : 0));
+    return sortedArray;
+  }
+
+export default function Players (props) {
 
     return (
-        <div className='teamsBox'>
-            <h1>Choose your players</h1>
-            <div className='namesContainer'>
-               <div id='homeTeam'>
-                    <Select title={'Opener'}/>
-                    <Select title={'Opener'}/>
-                    <Select title={'No.3'}/>
-                </div>
-                <div id='awayTeam'>
-                    <Select title={'Opener'}/>
+        <div className='box'>
+            <h2>Choose your players</h2>
+            <div className='playerContainer'>
+                <div className='selectContainer'>
+                    <h3 className='playerHeader'>Home players</h3>
+                    <select 
+                        onChange={props.handleInputChange}
+                        value={props.homePlayers}
+                        name='homePlayers'
+                    >
+                        <option value={props.homePlayers}>
+                            {props.homePlayers}
+                        </option>
+                        {playerArray().map((element) => 
+                        <option key={element.Player} value={element.Player}>
+                            {element.Player}
+                        </option>)}
+                    </select>
                 </div>
             </div>
-                <button id='PlayersBtn' onClick={PlayersBtn}>Confirm</button>
         </div>
-    );
+    )
 }
 
-export default Players
+
+
