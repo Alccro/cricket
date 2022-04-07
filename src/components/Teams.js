@@ -1,15 +1,4 @@
-import React, { useState } from 'react';
-
-import { statsFile } from './statsFile';
-
-function countryArray() {
-    const Country = statsFile.map(function(element) {
-        return element.Country;
-    })
-    return Country.filter((value, index) => Country.indexOf(value) === index);
-}
-
-
+import React from 'react';
 
 export default function Teams(props) {
 
@@ -22,13 +11,13 @@ export default function Teams(props) {
                     <h3>Home Team</h3>
                     <select 
                         onChange={props.handleInputChange}
-                        value={props.homeTeam}
+                        value={props.home}
                         name='home'
                     >
-                        <option value={props.homeTeam}>
-                            {props.homeTeam}
+                        <option value={props.home}>
+                            {props.home}
                         </option>
-                        {countryArray().map((element) => 
+                        {props.countryArray.map((element) => 
                         <option key={element} value={element}>
                             {element}
                         </option>)}
@@ -38,13 +27,13 @@ export default function Teams(props) {
                 <h3>Away Team</h3>
                     <select 
                         onChange={props.handleInputChange}
-                        value={props.awayTeam}
+                        value={props.away}
                         name='away'
                     >
-                        <option value={props.awayTeam}>
-                            {props.awayTeam}
+                        <option value={props.away}>
+                            {props.away}
                         </option>
-                        {countryArray().map((element) => 
+                        {props.countryArray.map((element) => 
                         <option key={element} value={element}>
                             {element}
                         </option>)}

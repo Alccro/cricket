@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import Select from './Select';
+
 
 class Rules extends Component {
     render() {
      return (
-        <div className='teamsBox'>
+        <div className='box'>
             <h2>Choose your game type</h2>
             <div className='rulesContainer'>
                 <input type='checkbox' id='overs20' name='overs20' value='20' />
