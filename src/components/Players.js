@@ -36,7 +36,7 @@ export default function Players (props) {
                                     {props.h1.map(({SRBat}) => (<td value={SRBat}>{SRBat}</td>))}
                                     {props.h1.map(({BowlAverage}) => (<td value={BowlAverage}>{BowlAverage}</td>))}
                                     {props.h1.map(({SRBall}) => (<td value={SRBall}>{SRBall}</td>))}
-                                    {props.h1.map(({Economy}) => (<td value={Economy}>{Economy}</td>))}
+                                    <td value={props.h1.Economy}>{props.h1.Economy}</td>
                                 </tr>
                             <tr>
                                 <td>

@@ -1,45 +1,36 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Commentary, Start } from './commentary';
 
 
 export default function Board(props) {
 
-    const SR = 67
+    // const SR = 67
     
-    function wicket() {
-      let x;      
-      if (Math.floor(Math.random()*SR)+1 === Math.floor(SR)) {
-          x = true
-            }
-         x = false;
-      return x
-        }
+    // function wicket() {
+    //   let x;      
+    //   if (Math.floor(Math.random()*SR)+1 === Math.floor(SR)) {
+    //       x = true
+    //         }
+    //      x = false;
+    //   return x
+    //     }
 
-        // function alert() {
-        //     alert('welcome');
-        // }
-        function start() {
-            const commentary = document.getElementsByClassName('commentary');
-            const wontoss = Math.random();
-            const toss = () => {
-                if (wontoss <= 0.35) {
-                    commentary.innerHTML = `${props.home} won the toss and elected to bat first`
-                } else if (wontoss > 0.35 <= 0.5) {
-                    commentary.innerHTML = `${props.home} won the toss and elected to bowl first`
-                } else if (wontoss > 0.5 <= 0.85) {
-                    commentary.innerHTML = `${props.away} won the toss and elected to bat first`
-                } else {
-                    commentary.innerHTML = `${props.away} won the toss and elected to bowl first`
-                }
-            }
-            setTimeout(toss,5000)
-            `"Welcome to this match between ${props.home} and ${props.away}"`
-        }
+
+
+
+        
+     const [isCommentaryActive, setCommentary] = useState(false);
+
+    function activateCommentary() {
+        console.log('click')
+        setCommentary({isCommentaryActive: !isCommentaryActive});
+    }    
 
     return (
         <div className='box'>
             <h1>Game Time</h1>
-            <button className='start' onClick={() => alert('welcome')}>Start Game</button>
-            <div className='commentary'>test</div>
+            <Start onClick={activateCommentary} text="Start Game" />
+            {isCommentaryActive ? <Commentary home={props.home} away={props.away} /> : null}
             <div className='playerContainer'>
                <div id='homeTeam'>
                     <h2>Home Team</h2>

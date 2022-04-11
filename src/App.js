@@ -97,7 +97,7 @@ const stats = {h1, h2, h3, h4, h5, h6, h7, h8, h9, h10, h11, a1}
   console.log('home:', values.home)
   console.log('away:', values.away)
   console.log('homePlayer1:', values.homePlayer1)
-  console.log(h1)
+  console.log(h1.BatAverage)
   console.log(h2)
   console.log(h3)
 
